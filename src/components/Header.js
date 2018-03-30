@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Link, NavLink } from 'react-router-dom';
 import styled from 'styled-components';
 
-
-
 class Header extends Component {
     renderContent() {
         // switch (this.props.auth) {
@@ -40,7 +38,7 @@ const Container = styled.header`
     background: #ff5a5a;
     display: flex;
     justify-content: space-between;
-    margin: 0 0 10px;
+    margin: 0 0;
     padding: 15px 30px;
 `;
 
