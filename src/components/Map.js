@@ -12,11 +12,11 @@ class Map extends Component {
         const restaurantName = "Bang Bang Ice Cream & Bakery";
         const restaurantReviews = reviews.filter((store) => (store.place === restaurantName));
         const tiles = restaurantReviews.map((review, index) => (
-            <li key={index}>
-                <h4>{review.user}</h4>
+            <Review key={index}>
+                <Author>{review.user}</Author>
+                <Description>{review.description}</Description>
                 <div className="img-cont"><Img src={icecream} alt=""/></div>
-                <p>{review.description}</p>
-            </li>
+            </Review>
         ))
         return tiles;
     }
@@ -26,20 +26,17 @@ class Map extends Component {
             <Container>
                 <MainContent>
                     <SearchContainer>
-                        <Form action="" method="get">
-                            <InputContainer>
-                                <Label htmlFor="city">Search by city</Label>
-                                <Input type="text" id="city"/>
-                            </InputContainer>
-                            <Button type="submit">Find Restaurants</Button>
+                        <Form action="" method="get">                            
+                            <Input type="text" id="city" placeholder="Search by city" />
+                            <Button type="submit">Search</Button>                            
                         </Form>
                     </SearchContainer>
-                    <div className="map-container"><Img src={map} alt="Map"/></div>
+                    <MapContainer><MapImg src={map} alt="Map"/></MapContainer>
                 </MainContent>
                 <SideBar>
-                    <ul>
+                    <ReviewList>
                         {this.reviewTiles()}
-                    </ul>
+                    </ReviewList>
                 </SideBar>
             </Container>
         )
@@ -58,7 +55,17 @@ const MainContent = styled.div`
 `;
 
 const SearchContainer = styled.div`
-    background: grey;
+    background: #484040;
+`;
+
+const MapImg = styled.img`
+    max-width: none;
+    height: 100%;
+`;
+
+const MapContainer = styled.div`
+    height: calc(100vh - 120px);
+    overflow: hidden;
 `;
 
 const Img = styled.img`
@@ -67,46 +74,113 @@ const Img = styled.img`
 
 const SideBar = styled.div`
     width: 35%;
+
+    // background: #a10000;
+    height: calc(100vh - 67px);
+    overflow: scroll;
 `;
 
 const Form = styled.form`
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-content: center;
+    justify-content: space-between;
+
+    padding: 10px 0;
 `;
 
-const InputContainer = styled.div`
-    display: flex;
-    justify-content: space-around;
-    margin: 35px 20px 15px;
-`;
+// const InputContainer = styled.div`
+//     display: flex;
+//     justify-content: space-around;
+//     // margin: 35px 20px 15px;
+//     margin: 12px;
+// `;
 
-const Label = styled.label`
-    padding: 5px;
-    font-size: 18px;
-`;
+// const Label = styled.label`
+//     padding: 5px;
+//     font-size: 18px;
+
+//     // flex: 1;
+// `;
 
 const Input = styled.input`
     background: none;
     border: none;
-    border-bottom: 2px solid black;
+    border-bottom: 2px solid #a3a3a3;
+    color: white;
     width: 65%;
     padding: 5px;
     font-size: 18px;
     letter-spacing: 1px;
+
+    // flex: 2;
+
+    margin: 0 10px 0 20px;
 `;
 
 const Button = styled.button`
-    width: 200px;
-
-    background: red;
+    // width: 200px;
+    flex: 1;
+    background: #009688;
     border: none;
     border-radius: 6px;
-    margin: 0 auto 15px;
-    padding: 10px 10px;
+    // margin: 0 auto 15px;
+    // margin: 15px 10px;
+    // padding: 10px 10px;
     color: white;
     font-size: 17px;
     letter-spacing: 2px;
 
     cursor: pointer;
+
+    margin: 0 10px;
+
+    transition: background 0.1s ease-out;
+
+    &:hover {
+        background: #00b7a6;
+    }
 `;
+
+const ReviewList = styled.ul`
+    padding: 0;
+    list-style-type: none;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+`;
+
+const Review = styled.li`
+    // margin: 10px 10px 0;
+    // background: yellow;
+    padding: 15px 15px 14px;
+    position: relative;
+
+    &:after {
+        position: absolute;
+        width: 80%;
+        height: 100%;
+        top: 0;
+        left: 10%;
+        /* background: red; */
+        /* z-index: 10; */
+        content: '';
+        border-bottom: 2px solid #ff595a;
+    }
+
+    &:last-child {
+        margin-bottom: 10px;
+
+        &:after {
+            border-bottom: none;
+        }
+    }
+`;
+
+const Author = styled.h4`
+    margin: 0 0 5px;
+`;
+
+const Description = styled.p`
+    margin: 5px 0;
+`;  
