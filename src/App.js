@@ -6,7 +6,7 @@ import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
 import About from './components/About';
-import Map from './components/Map';
+import MapPage from './components/MapPage';
 
 class App extends Component {
   render() {
@@ -17,7 +17,7 @@ class App extends Component {
 
           <Route exact path="/" component={Home} />
           <Route path="/about" component={About} />
-          <Route path="/map" component={Map} />
+          <Route path="/map" component={MapPage} />
         </div>
       </BrowserRouter>
     );
