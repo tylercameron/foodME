@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import Header from './components/Header';
 import Home from './components/Home';
-import About from './components/About';
+import Profile from './components/Profile';
 import MapPage from './components/MapPage';
 
 class App extends Component {
@@ -16,7 +16,7 @@ class App extends Component {
           <Header />
 
           <Route exact path="/" component={Home} />
-          <Route path="/about" component={About} />
+          <Route path="/profile" component={Profile} />
           <Route path="/map" component={MapPage} />
         </div>
       </BrowserRouter>
